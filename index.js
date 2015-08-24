@@ -8,7 +8,7 @@ module.exports = function (file, options) {
     var self = this;
     var content = buffer.toString('utf8');
 
-    content = content.replace(/!resolve\((.*?)\)/g, function (match, path) {
+    content = content.replace(/!resolve\{(.*?)\}/g, function (match, path) {
       try {
         return resolve.sync(path);
       } catch (e) {
@@ -29,5 +29,5 @@ module.exports = function (file, options) {
   };
 
   return through(transform, flush);
-  
+
 };
